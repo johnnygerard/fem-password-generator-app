@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, computed } from '@angular/core';
 import { PasswordConfigService } from './password-config.service';
 
 @Injectable({
@@ -7,18 +7,29 @@ import { PasswordConfigService } from './password-config.service';
 export class PasswordGenerationService {
   readonly BUFFER_SIZE = 256;
   readonly MAX_BYTE = 255;
-
   readonly #buffer = new Uint8Array(this.BUFFER_SIZE);
   #bufferIndex = 0;
+
+  readonly includedCharsets = computed(
+    () => Object.values(this._pwdConfig.pwdCharsets)
+      .filter(charset => charset.isIncluded())
+      .map(charset => charset.value)
+  );
+
+  readonly pwdCharset = computed(
+    () => Object.values(this._pwdConfig.pwdCharsets).reduce(
+      (acc, charset) => charset.isIncluded() ? acc + charset.value : acc, ''
+    )
+  );
 
   constructor(
     private readonly _pwdConfig: PasswordConfigService,
   ) { }
 
   makePassword(): string {
-    const pwdCharset = this._pwdConfig.pwdCharset();
+    const pwdCharset = this.pwdCharset();
     const pwdLength = this._pwdConfig.pwdLength();
-    const includedCharsets = this._pwdConfig.includedCharsets();
+    const includedCharsets = this.includedCharsets();
     const includedCharsetsCount = includedCharsets.length;
     let password = '';
 

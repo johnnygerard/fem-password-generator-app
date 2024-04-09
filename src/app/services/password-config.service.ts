@@ -1,4 +1,4 @@
-import { Injectable, computed, model } from '@angular/core';
+import { Injectable, model } from '@angular/core';
 import { Charset } from '../types/charset.enum';
 import { PasswordCharset } from '../types/password-charset.class';
 
@@ -15,16 +15,4 @@ export class PasswordConfigService {
     digits: new PasswordCharset(Charset.DIGITS),
     symbols: new PasswordCharset(Charset.SYMBOLS),
   } as const;
-
-  readonly includedCharsets = computed(
-    () => Object.values(this.pwdCharsets)
-      .filter(charset => charset.isIncluded())
-      .map(charset => charset.value)
-  );
-
-  readonly pwdCharset = computed(
-    () => Object.values(this.pwdCharsets).reduce(
-      (acc, charset) => charset.isIncluded() ? acc + charset.value : acc, ''
-    )
-  );
 }
