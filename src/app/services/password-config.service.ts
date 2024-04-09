@@ -11,7 +11,7 @@ export class PasswordConfigService {
 
   readonly includedCharsetsCount = computed(
     () => Object.values(this.pwdCharsets).reduce(
-      (acc, charset) => charset.isIncluded() ? ++acc : acc, 0
+      (acc, charset) => charset.isIncluded() ? acc + 1 : acc, 0
     )
   );
 
