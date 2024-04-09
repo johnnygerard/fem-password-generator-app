@@ -16,17 +16,24 @@ export class PasswordGenerationService {
   ) { }
 
   makePassword(): string {
-    const pwdMainLength = this._pwdConfig.pwdLength() - this._pwdConfig.pwdMinLength();
+    const pwdCharset = this._pwdConfig.pwdCharset();
+    const pwdLength = this._pwdConfig.pwdLength();
+    const includedCharsets = this._pwdConfig.includedCharsets();
+    const includedCharsetsCount = includedCharsets.length;
     let password = '';
 
-    for (let i = 0; i < pwdMainLength; i++)
-      password += this.#getRandomChar(this._pwdConfig.pwdCharset());
+    if (pwdLength === 0 || includedCharsetsCount === 0)
+      return '';
 
-    // Ensure that at least one character from each selected character set is included
-    Object.values(this._pwdConfig.pwdCharsets).forEach(charset => {
-      if (charset.isIncluded())
-        password = this.#insertRandomChar(charset.value, password);
-    });
+    if (pwdLength < includedCharsetsCount) {
+      password = this.#getRandomString(pwdCharset, pwdLength);
+    } else {
+      // Ensure that at least one character from each selected character set is included
+      password = this.#getRandomString(pwdCharset, pwdLength - includedCharsetsCount);
+
+      for (const charset of includedCharsets)
+        password = this.#insertRandomChar(charset, password);
+    }
 
     return password;
   }
@@ -44,6 +51,15 @@ export class PasswordGenerationService {
 
   #getRandomChar(charset: string): string {
     return charset[this.#getRandomIndex(charset.length)];
+  }
+
+  #getRandomString(charset: string, length: number): string {
+    let randomString = '';
+
+    for (let i = 0; i < length; i++)
+      randomString += this.#getRandomChar(charset);
+
+    return randomString;
   }
 
   #getRandomIndex(length: number): number {
