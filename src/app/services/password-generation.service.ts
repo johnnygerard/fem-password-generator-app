@@ -70,7 +70,7 @@ export class PasswordGenerationService {
     return password.slice(0, randomPwdIndex) + randomChar + password.slice(randomPwdIndex);
   }
 
-  #fillBuffer = (): void => {
+  #fillBuffer(): void {
     window.crypto.getRandomValues(this.#buffer);
   }
 }
