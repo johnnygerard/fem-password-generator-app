@@ -4,17 +4,26 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CryptographyService {
-  readonly MAX_BYTE = 255;
-  readonly BUFFER_SIZE = 256;
-  readonly #buffer = new Uint8Array(this.BUFFER_SIZE);
+  readonly #MAX_BYTE = 255;
+  readonly #BUFFER_SIZE = 256;
+  readonly #buffer = new Uint8Array(this.#BUFFER_SIZE);
   #bufferIndex = 0;
 
-  getRandomIndex(length: number): number {
-    if (length > this.MAX_BYTE)
-      throw new Error(`Invalid input: length must not exceed ${this.MAX_BYTE}`);
+  constructor() {
+    if (window.crypto === undefined)
+      throw new Error('Your browser does not support the Web Cryptography API');
+  }
+
+  public getRandomIndex(length: number): number {
+    const isValidInput = length >= 1
+      && length <= this.#MAX_BYTE
+      && Number.isInteger(length);
+
+    if (!isValidInput)
+      throw new Error('Invalid input');
 
     // Greatest byte value that is a multiple of the specified length
-    const upperBound = this.MAX_BYTE - (this.MAX_BYTE % length);
+    const upperBound = this.#MAX_BYTE - (this.#MAX_BYTE % length);
     let sampledByte: number;
 
     // Rejection sampling is used to prevent modulo bias
