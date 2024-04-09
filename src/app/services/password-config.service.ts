@@ -9,9 +9,9 @@ export class PasswordConfigService {
   readonly PWD_MAX_LENGTH = 20;
   readonly pwdLength = model(0);
 
-  readonly pwdMinLength = computed(
+  readonly includedCharsetsCount = computed(
     () => Object.values(this.pwdCharsets).reduce(
-      (acc, charset) => acc + (charset.isIncluded() ? 1 : 0), 0
+      (acc, charset) => charset.isIncluded() ? ++acc : acc, 0
     )
   );
 
