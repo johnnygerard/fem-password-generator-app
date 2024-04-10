@@ -22,7 +22,7 @@ export class CryptographyService {
       && Number.isInteger(length);
 
     if (!isValidInput)
-      throw new Error('Invalid input');
+      throw new Error(`${length} is not a valid length`);
 
     // Greatest byte value that is a multiple of the specified length
     const upperBound = this.#MAX_BYTE - (this.#MAX_BYTE % length);
