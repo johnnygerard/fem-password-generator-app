@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CryptographyService {
   readonly #MAX_BYTE = 255;
-  readonly #BUFFER_SIZE = 256;
+  readonly #BUFFER_SIZE = 1024;
   readonly #buffer = new Uint8Array(this.#BUFFER_SIZE);
   #bufferIndex = 0;
 
