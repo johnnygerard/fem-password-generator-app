@@ -12,6 +12,8 @@ export class CryptographyService {
   constructor() {
     if (window.crypto === undefined)
       throw new Error('Your browser does not support the Web Cryptography API');
+
+    this.#fillBuffer();
   }
 
   public getRandomIndex(length: number): number {
