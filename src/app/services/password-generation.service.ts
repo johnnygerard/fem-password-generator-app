@@ -61,6 +61,10 @@ export class PasswordGenerationService {
 
   #insertRandomChar(charset: string, password: string): string {
     const randomChar = this.#getRandomChar(charset);
+
+    if (password.length === 0)
+      return randomChar;
+
     const randomPwdIndex = this._crypto.getRandomIndex(password.length);
 
     return password.slice(0, randomPwdIndex) + randomChar + password.slice(randomPwdIndex);
