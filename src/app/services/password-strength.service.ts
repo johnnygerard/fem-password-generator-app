@@ -26,7 +26,7 @@ export class PasswordStrengthService {
       .reduce((acc, charset) => acc + charset.value.length, 0);
 
     if (charsetSize === 0 || pwdLength === 0) return 0;
-    return Math.log2(charsetSize ** pwdLength);
+    return pwdLength * Math.log2(charsetSize);
   });
 
   constructor(
