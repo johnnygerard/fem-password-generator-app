@@ -25,6 +25,7 @@ export class PasswordStrengthService {
       .filter(charset => charset.isIncluded())
       .reduce((acc, charset) => acc + charset.value.length, 0);
 
+    if (charsetSize === 0 || pwdLength === 0) return 0;
     return Math.log2(charsetSize ** pwdLength);
   });
 
