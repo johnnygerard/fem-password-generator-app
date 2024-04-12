@@ -1,0 +1,49 @@
+@use "index" as *;
+
+$track-color: $color-very-dark-gray;
+$track-width: 100%;
+$track-height: 8px;
+$track-border-radius: 0%;
+
+$thumb-color: $color-near-white;
+$thumb-width: 28px;
+$thumb-height: 28px;
+$thumb-border-radius: 50%;
+
+$progress-track-color: $color-neon-green;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+@include range-input(
+  $track-color,
+  $track-width,
+  $track-height,
+  $track-border-radius,
+  $thumb-color,
+  $thumb-width,
+  $thumb-height,
+  $thumb-border-radius,
+  $progress-track-color
+);
+
+// Source: https://dev.to/munkacsimark/styled-range-input-a-way-out-of-range-input-nightmare-jeo
+input[type="range"] {
+  // Firefox
+  &::-moz-range-progress {
+    height: $track-height;
+    background-color: $progress-track-color;
+  }
+
+  // WebKit-based browsers
+  &::-webkit-slider-runnable-track {
+    // --progress-percentage is set dynamically with @HostBinding
+    background-image: linear-gradient(
+      to right,
+      $progress-track-color var(--progress-percentage),
+      $track-color var(--progress-percentage)
+    );
+  }
+}
