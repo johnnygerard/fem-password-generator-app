@@ -1,0 +1,93 @@
+// This mixin is derived from the CSS generator at https://range-input-css.netlify.app/
+@mixin range-input(
+  $track-color,
+  $track-width,
+  $track-height,
+  $track-border-radius,
+  $thumb-color,
+  $thumb-width,
+  $thumb-height,
+  $thumb-border-radius,
+  $progress-track-color
+) {
+  input[type="range"] {
+    /*********** Baseline, reset styles ***********/
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: $track-width;
+
+    /* Removes default focus */
+    &:focus {
+      outline: none;
+    }
+
+    /******** Chrome, Safari, Opera and Edge Chromium styles ********/
+    /* slider track */
+    &::-webkit-slider-runnable-track {
+      background-color: $track-color;
+      border-radius: $track-border-radius;
+      height: $track-height;
+    }
+
+    /* slider thumb */
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none; /* Override default look */
+      appearance: none;
+      /* Centers thumb on the track */
+      margin-top: calc(($track-height - $thumb-height) / 2);
+      background-color: $thumb-color;
+      border-radius: $thumb-border-radius;
+      height: $thumb-height;
+      width: $thumb-width;
+    }
+
+    &::-webkit-slider-thumb {
+      // Set initial color for transition
+      outline-color: transparent;
+
+      transition-duration: 0.2s;
+      transition-property: background-color, outline-color;
+      transition-timing-function: ease;
+    }
+
+    &:focus-visible::-webkit-slider-thumb,
+    &::-webkit-slider-thumb:hover {
+      outline: 2px solid $progress-track-color;
+      background-color: $track-color;
+    }
+
+    /*********** Firefox styles ***********/
+    /* slider track */
+    &::-moz-range-track {
+      background-color: $track-color;
+      border-radius: $track-border-radius;
+      height: $track-height;
+    }
+
+    /* slider thumb */
+    &::-moz-range-thumb {
+      background-color: $thumb-color;
+      border: none; /* Removes extra border that FF applies */
+      border-radius: $thumb-border-radius;
+      height: $thumb-height;
+      width: $thumb-width;
+    }
+
+    &::-moz-range-thumb {
+      // Set initial color for transition
+      outline-color: transparent;
+
+      transition-duration: 0.2s;
+      transition-property: background-color, outline-color;
+      transition-timing-function: ease;
+    }
+
+    &:focus-visible::-moz-range-thumb,
+    &::-moz-range-thumb:hover {
+      outline: 2px solid $progress-track-color;
+      background-color: $track-color;
+    }
+  }
+}
