@@ -13,6 +13,7 @@ export class PasswordStrengthService {
   public passwordStrength = computed(() => {
     const entropy = this._entropy.passwordEntropy();
 
+    if (entropy === 0) return PasswordStrength.LEVEL_0;
     if (entropy < 36) return PasswordStrength.LEVEL_1;
     if (entropy < 60) return PasswordStrength.LEVEL_2;
     if (entropy < 90) return PasswordStrength.LEVEL_3;

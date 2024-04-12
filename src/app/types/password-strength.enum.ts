@@ -1,6 +1,7 @@
 export enum PasswordStrength {
-  LEVEL_1 = 'TOO WEAK!',
-  LEVEL_2 = 'WEAK',
-  LEVEL_3 = 'MEDIUM',
-  LEVEL_4 = 'STRONG',
+  LEVEL_0,
+  LEVEL_1,
+  LEVEL_2,
+  LEVEL_3,
+  LEVEL_4,
 }
