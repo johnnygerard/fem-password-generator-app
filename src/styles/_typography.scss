@@ -1,11 +1,35 @@
-@mixin heading-large {
+@use "breakpoints" as *;
+
+// password and password length
+@mixin password {
   font-size: 32px;
+
+  @include mobile {
+    font-size: 24px;
+  }
 }
 
-@mixin heading-medium {
+@mixin strength-meter-label {
   font-size: 24px;
+
+  @include mobile {
+    font-size: 18px;
+  }
 }
 
+@mixin heading {
+  font-size: 24px;
+
+  @include mobile {
+    font-size: 16px;
+  }
+}
+
+// input labels, submit button and strength label
 @mixin body {
   font-size: 18px;
+
+  @include mobile {
+    font-size: 16px;
+  }
 }
