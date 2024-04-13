@@ -9,12 +9,17 @@
     width: 17.5px;
     height: 20px;
   }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 svg {
   fill: $color-neon-green;
 
-  &:hover {
+  :host:not(.disabled) &:hover {
     fill: #fff;
   }
 }
