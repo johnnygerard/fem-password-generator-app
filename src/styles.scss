@@ -1,7 +1,7 @@
 @use "index" as *;
 
 body {
-  background-color: $color-dark-gray;
+  background-image: linear-gradient(to bottom, #14131b, #08070b);
 
   // Typography
   color: $color-near-white;
