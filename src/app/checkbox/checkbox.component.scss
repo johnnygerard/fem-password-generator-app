@@ -1,0 +1,40 @@
+@use "index" as *;
+
+:host {
+  display: block;
+
+  &:has(:focus-visible) {
+    outline: 2px solid $color-very-dark-gray;
+    outline-offset: 2px;
+
+    & .unchecked-box {
+      stroke: $color-neon-green;
+    }
+  }
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  position: absolute;
+}
+
+// SVG styles **************************************************
+svg {
+  cursor: pointer;
+
+  &:hover .unchecked-box {
+    stroke: $color-neon-green;
+  }
+}
+
+.checkmark {
+  stroke: $color-very-dark-gray;
+}
+
+.checked-box {
+  fill: $color-neon-green;
+}
+
+.unchecked-box {
+  stroke: $color-near-white;
+}
