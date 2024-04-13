@@ -2,16 +2,16 @@ import { ChangeDetectionStrategy, Component, HostBinding, input, model, numberAt
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-range-control',
+  selector: 'app-slider',
   standalone: true,
   imports: [
     FormsModule,
   ],
-  templateUrl: './range-control.component.html',
-  styleUrl: './range-control.component.scss',
+  templateUrl: './slider.component.html',
+  styleUrl: './slider.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RangeControlComponent {
+export class SliderComponent {
   min = input.required({ transform: numberAttribute });
   max = input.required({ transform: numberAttribute });
   value = model.required<number>();
