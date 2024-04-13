@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, HostBinding, input, model, numberAttribute } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, HostBinding, forwardRef, input, model, numberAttribute } from '@angular/core';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-slider',
@@ -7,17 +7,47 @@ import { FormsModule } from '@angular/forms';
   imports: [
     FormsModule,
   ],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SliderComponent),
+      multi: true,
+    },
+  ],
   templateUrl: './slider.component.html',
   styleUrl: './slider.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SliderComponent {
+export class SliderComponent implements ControlValueAccessor {
   min = input.required({ transform: numberAttribute });
   max = input.required({ transform: numberAttribute });
-  value = model.required<number>();
+  value = model<number | null>(null);
+  onChange = (_value: number) => { };
+  onTouched = () => { };
 
   @HostBinding('style.--progress-percentage.%')
   get progressPercentage(): number {
-    return this.value() / this.max() * 100;
+    const value = this.value();
+    return value === null ? 0 : value / this.max() * 100;
+  }
+
+  onBlur(): void {
+    this.onTouched();
+  }
+
+  onInput(): void {
+    this.onChange(this.value()!);
+  }
+
+  writeValue(value: number): void {
+    this.value.set(value);
+  }
+
+  registerOnChange(fn: (value: number) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
   }
 }
