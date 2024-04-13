@@ -1,6 +1,8 @@
 @use "index" as *;
 
 body {
+  background-image: linear-gradient(to bottom, #14131b, #08070b);
+
   // Typography
   color: $color-near-white;
   font-family: "JetBrains Mono", monospace;
