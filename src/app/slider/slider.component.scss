@@ -3,7 +3,7 @@
 $track-color: $color-very-dark-gray;
 $track-width: 100%;
 $track-height: 8px;
-$track-border-radius: 0%;
+$track-border-radius: 0;
 
 $thumb-color: $color-near-white;
 $thumb-width: 28px;
@@ -29,6 +29,7 @@ $progress-track-color: $color-neon-green;
   $progress-track-color
 );
 
+// Style the progress track (left side of the thumb)
 // Source: https://dev.to/munkacsimark/styled-range-input-a-way-out-of-range-input-nightmare-jeo
 input[type="range"] {
   // Firefox
