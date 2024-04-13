@@ -1,6 +1,8 @@
 @use "index" as *;
 
 body {
+  background-color: $color-dark-gray;
+
   // Typography
   color: $color-near-white;
   font-family: "JetBrains Mono", monospace;
