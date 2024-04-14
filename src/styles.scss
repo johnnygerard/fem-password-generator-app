@@ -6,7 +6,16 @@
 }
 
 body {
+  // Center horizontally
+  display: flex;
+  justify-content: center;
+
   background-image: linear-gradient(to bottom, #14131b, #08070b);
+  padding-top: 132px;
+
+  @include mobile {
+    padding: 64px 16px 0;
+  }
 
   // Typography
   color: $color-near-white;
