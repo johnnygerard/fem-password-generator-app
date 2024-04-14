@@ -79,6 +79,12 @@ form {
     @include mobile {
       gap: 20px;
     }
+
+    --unchecked-box-border-color: #{$color-near-white};
+
+    &:has(:hover) {
+      --unchecked-box-border-color: #{$color-neon-green};
+    }
   }
 
   &-label {
