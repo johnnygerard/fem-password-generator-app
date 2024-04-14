@@ -36,5 +36,6 @@ svg {
 }
 
 .unchecked-box {
+  transition: stroke 0.2s ease;
   stroke: $color-near-white;
 }
