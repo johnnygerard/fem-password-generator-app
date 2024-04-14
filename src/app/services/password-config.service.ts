@@ -6,6 +6,7 @@ import { PasswordCharset } from '../types/password-charset.class';
   providedIn: 'root'
 })
 export class PasswordConfigService {
+  readonly PWD_MIN_LENGTH = 0;
   readonly PWD_MAX_LENGTH = 20;
   readonly pwdLength = model(0);
 
