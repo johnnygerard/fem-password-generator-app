@@ -19,6 +19,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderComponent implements ControlValueAccessor {
+  labelId = input<string>();
   min = input.required({ transform: numberAttribute });
   max = input.required({ transform: numberAttribute });
   value = model<number | null>(null);
