@@ -8,6 +8,7 @@ import { PasswordService } from './services/password.service';
 import { PasswordConfigService } from './services/password-config.service';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
+import { SvgRightArrowComponent } from './svg/svg-right-arrow.component';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { NgFor } from '@angular/common';
     SliderComponent,
     CheckboxComponent,
     StrengthMeterComponent,
+    SvgRightArrowComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -32,4 +34,8 @@ export class AppComponent {
     private readonly _generator: PasswordGenerationService,
     private readonly _password: PasswordService,
   ) { }
+
+  generatePassword(): void {
+    this._password.value.set(this._generator.makePassword());
+  }
 }
