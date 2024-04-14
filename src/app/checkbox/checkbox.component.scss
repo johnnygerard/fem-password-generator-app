@@ -4,7 +4,7 @@
   display: block;
 
   &:has(:focus-visible) {
-    outline: 2px solid $color-very-dark-gray;
+    outline: 2px solid $color-near-white;
     outline-offset: 2px;
 
     & .unchecked-box {
