@@ -1,5 +1,6 @@
 <label>
-  <input type="checkbox" [(ngModel)]="value" (blur)="onBlur()" (change)="onValueChange()">
+  <input [attr.id]="labelId()" type="checkbox" [(ngModel)]="value" (blur)="onBlur()"
+      (change)="onValueChange()">
   <ng-container *ngTemplateOutlet="value() ? checked : unchecked" />
 </label>
 
