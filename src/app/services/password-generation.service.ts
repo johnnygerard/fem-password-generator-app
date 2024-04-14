@@ -7,13 +7,13 @@ import { CryptographyService } from './cryptography.service';
 })
 export class PasswordGenerationService {
   readonly includedCharsets = computed(
-    () => Object.values(this._pwdConfig.pwdCharsets)
+    () => this._pwdConfig.pwdCharsets
       .filter(charset => charset.isIncluded())
       .map(charset => charset.value)
   );
 
   readonly pwdCharset = computed(
-    () => Object.values(this._pwdConfig.pwdCharsets).reduce(
+    () => this._pwdConfig.pwdCharsets.reduce(
       (acc, charset) => charset.isIncluded() ? acc + charset.value : acc, ''
     )
   );

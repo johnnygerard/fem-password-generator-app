@@ -10,10 +10,10 @@ export class PasswordConfigService {
   readonly PWD_MAX_LENGTH = 20;
   readonly pwdLength = model(0);
 
-  readonly pwdCharsets = {
-    lowercase: new PasswordCharset(Charset.LOWERCASE),
-    uppercase: new PasswordCharset(Charset.UPPERCASE),
-    digits: new PasswordCharset(Charset.DIGITS),
-    symbols: new PasswordCharset(Charset.SYMBOLS),
-  } as const;
+  readonly pwdCharsets = [
+    new PasswordCharset(Charset.UPPERCASE, 'Include Uppercase Letters'),
+    new PasswordCharset(Charset.LOWERCASE, 'Include Lowercase Letters'),
+    new PasswordCharset(Charset.DIGITS, 'Include Numbers'),
+    new PasswordCharset(Charset.SYMBOLS, 'Include Symbols'),
+  ] as const;
 }
