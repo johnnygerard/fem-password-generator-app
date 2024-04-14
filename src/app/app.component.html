@@ -1,1 +1,21 @@
-<p>Website under development</p>
+<h1 class="heading">Password Generator</h1>
+<app-password />
+<form>
+  <div class="laeel-container">
+    <label [for]="PASSWORD_LENGTH_INPUT">Character Length</label>
+    <output>{{ config.pwdLength() }}</output>
+  </div>
+  <app-slider [labelId]="PASSWORD_LENGTH_INPUT" [min]="config.PWD_MIN_LENGTH"
+      [max]="config.PWD_MAX_LENGTH" [(ngModel)]="config.pwdLength" name="password-length" />
+  <ul class="checkbox-list">
+    <li *ngFor="let charset of config.pwdCharsets">
+      <app-checkbox [labelId]="'checkbox-' + charset.name" [(ngModel)]="charset.isIncluded"
+          [name]="charset.name" />
+      <label class="charset-label" [for]="'checkbox-' + charset.name">
+        {{ charset.label }}
+      </label>
+    </li>
+  </ul>
+  <button type="submit">Generate</button>
+</form>
+<app-strength-meter />
