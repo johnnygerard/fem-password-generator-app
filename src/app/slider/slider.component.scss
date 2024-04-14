@@ -13,8 +13,12 @@ $thumb-border-radius: 50%;
 $progress-track-color: $color-neon-green;
 
 :host {
-  display: block;
+  // Center vertically
+  display: flex;
+  align-items: center;
+
   width: 100%;
+  height: $thumb-height;
 }
 
 @include range-input(

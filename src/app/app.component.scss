@@ -1,9 +1,130 @@
-@use 'index' as *;
+@use "index" as *;
 
 :host {
-  // Center content for manual testing
+  display: flex;
+  flex-direction: column;
+  width: 540px;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.heading {
+  // Typography
+  color: $color-gray;
+  @include heading;
+  text-align: center;
+}
+
+.password {
+  margin: 32px 0 24px;
+
+  @include mobile {
+    margin: 16px 0;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  background-color: $color-dark-gray;
+  padding: 24px 32px 32px;
+
+  @include mobile {
+    padding: 16px;
+  }
+}
+
+.password-length {
+  color: $color-neon-green;
+  @include password;
+
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-label {
+    color: $color-near-white;
+    @include body;
+  }
+
+  &-slider {
+    margin: 16px 0 32px;
+
+    @include mobile {
+      margin: 8px 0 32px;
+    }
+  }
+}
+
+.charset {
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include mobile {
+      gap: 16px;
+    }
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    @include mobile {
+      gap: 20px;
+    }
+  }
+
+  &-label {
+    cursor: pointer;
+
+    // Typography
+    color: $color-near-white;
+    @include body;
+  }
+}
+
+app-strength-meter {
+  margin: 32px 0;
+
+  @include mobile {
+    margin: 32px 0 16px;
+  }
+}
+
+button[type="submit"] {
+  background-color: $color-neon-green;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 64px;
+  gap: 24px;
+  border: 2px solid transparent;
+  outline: none;
+
+  @include mobile {
+    height: 56px;
+    gap: 16px;
+  }
+
+  // Typography
+  @include body;
+  text-transform: uppercase;
+  color: $color-dark-gray;
+
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+
+  &:is(:hover, :focus-visible) {
+    background-color: transparent;
+    border-color: $color-neon-green;
+    color: $color-neon-green;
+  }
 }

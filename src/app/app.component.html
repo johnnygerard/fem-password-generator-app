@@ -1,1 +1,25 @@
-<p>Website under development</p>
+<h1 class="heading">Password Generator</h1>
+<app-password class="password" />
+<form (ngSubmit)="generatePassword()">
+  <div class="password-length-container">
+    <label class="password-length-label" [for]="PASSWORD_LENGTH_INPUT">Character Length</label>
+    <output class="password-length">{{ config.pwdLength() }}</output>
+  </div>
+  <app-slider class="password-length-slider" [labelId]="PASSWORD_LENGTH_INPUT"
+      [min]="config.PWD_MIN_LENGTH" [max]="config.PWD_MAX_LENGTH" [(ngModel)]="config.pwdLength"
+      name="password-length" />
+  <ul class="charset-list">
+    <li class="charset-item" *ngFor="let charset of config.pwdCharsets">
+      <app-checkbox [labelId]="'checkbox-' + charset.name" [(ngModel)]="charset.isIncluded"
+          [name]="charset.name" />
+      <label class="charset-label" [for]="'checkbox-' + charset.name">
+        {{ charset.label }}
+      </label>
+    </li>
+  </ul>
+  <app-strength-meter />
+  <button type="submit" aria-label="Generate new password">
+    <span>Generate</span>
+    <app-svg-right-arrow />
+  </button>
+</form>

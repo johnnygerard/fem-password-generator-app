@@ -11,7 +11,7 @@ export class PasswordEntropyService {
    */
   public passwordEntropy = computed(() => {
     const pwdLength = this._config.pwdLength();
-    const charsetSize = Object.values(this._config.pwdCharsets)
+    const charsetSize = this._config.pwdCharsets
       .filter(charset => charset.isIncluded())
       .reduce((acc, charset) => acc + charset.value.length, 0);
 

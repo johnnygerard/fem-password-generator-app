@@ -38,7 +38,7 @@ describe('PasswordGenerationService', () => {
 
   it('should generate a password with the correct length', () => {
     // Include at least one character set
-    configService.pwdCharsets.lowercase.isIncluded.set(true);
+    configService.pwdCharsets[0].isIncluded.set(true);
 
     for (let length = PWD_MIN_LENGTH; length < PWD_MAX_LENGTH; length++) {
       configService.pwdLength.set(length);
@@ -80,14 +80,12 @@ function configureCharsets(
   charset: string,
   charsets: Charset[],
 } {
-  const pwdCharsets = service.pwdCharsets;
+  for (let i = 0; i < 4; i++) {
+    const flag = flags & (1 << i);
+    service.pwdCharsets[i].isIncluded.set(Boolean(flag));
+  }
 
-  pwdCharsets.lowercase.isIncluded.set(Boolean(flags & 1));
-  pwdCharsets.uppercase.isIncluded.set(Boolean(flags & 2));
-  pwdCharsets.digits.isIncluded.set(Boolean(flags & 4));
-  pwdCharsets.symbols.isIncluded.set(Boolean(flags & 8));
-
-  const includedCharsets = Object.values(pwdCharsets)
+  const includedCharsets = service.pwdCharsets
     .filter(charset => charset.isIncluded());
 
   // Return the full charset and the component charsets
