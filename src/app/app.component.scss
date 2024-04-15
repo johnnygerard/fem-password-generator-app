@@ -128,9 +128,17 @@ button[type="submit"] {
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
 
-  &:is(:hover, :focus-visible) {
+  &:is(:hover, :focus-visible):not(:disabled) {
     background-color: transparent;
     border-color: $color-neon-green;
     color: $color-neon-green;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: $color-red;
+    }
   }
 }
