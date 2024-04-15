@@ -16,6 +16,7 @@ import { NgIf } from '@angular/common';
 })
 export class PasswordComponent {
   readonly #PLACEHOLDER = 'P4$5W0rD!';
+  readonly #TIMEOUT = 2000;
   readonly isCopyDisabled = computed(() => this.isPlaceholder());
   readonly isPlaceholder = computed(() => this._password.value() === '');
   readonly password = computed(() => {
@@ -45,14 +46,20 @@ export class PasswordComponent {
     this._changeDetectorRef.markForCheck();
   }
 
-  copyPassword(): void {
+  async copyPassword(): Promise<void> {
     window.clearTimeout(this.timeoutId);
-    window.navigator.clipboard.writeText(this.password())
-      .then(() => {
-        this.isCopied = true;
-        this.timeoutId = window.setTimeout(() => {
-          this.isCopied = false;
-        }, 2000);
-      });
+
+    try {
+      await window.navigator.clipboard.writeText(this.password());
+      this.isCopied = true;
+      this.timeoutId = window.setTimeout(() => {
+        this.isCopied = false;
+      }, this.#TIMEOUT);
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'NotAllowedError')
+        throw new Error('Clipboard write permission denied', { cause: error });
+
+      throw new Error('Unexpected error', { cause: error });
+    }
   }
 }
