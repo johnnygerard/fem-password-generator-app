@@ -26,6 +26,7 @@
 }
 
 form {
+  min-width: max-content;
   display: flex;
   flex-direction: column;
   background-color: $color-dark-gray;
