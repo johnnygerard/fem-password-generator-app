@@ -18,7 +18,8 @@
     </li>
   </ul>
   <app-strength-meter />
-  <button type="submit" aria-label="Generate new password">
+  <button type="submit" [disabled]="entropyService.passwordEntropy() === 0"
+      aria-label="Generate new password">
     <span>Generate</span>
     <app-svg-right-arrow />
   </button>

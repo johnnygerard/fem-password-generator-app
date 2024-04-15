@@ -1,5 +1,9 @@
 @use "index" as *;
 
+html {
+  scrollbar-color: $color-neon-green $color-dark-gray;
+}
+
 ::selection {
   background-color: $color-neon-green;
   color: $color-dark-gray;
@@ -10,11 +14,12 @@ body {
   display: flex;
   justify-content: center;
 
+  min-width: min-content;
   background-image: linear-gradient(to bottom, #14131b, #08070b);
-  padding-top: 132px;
+  padding: 132px 0 92px;
 
   @include mobile {
-    padding: 64px 16px 0;
+    padding: 64px 16px;
   }
 
   // Typography

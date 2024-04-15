@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, forwardRef, input, model, numberAttribute } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, input, model, numberAttribute } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,7 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SliderComponent),
+      useExisting: SliderComponent,
       multi: true,
     },
   ],

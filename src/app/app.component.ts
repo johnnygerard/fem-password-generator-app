@@ -9,6 +9,7 @@ import { PasswordConfigService } from './services/password-config.service';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { SvgRightArrowComponent } from './svg/svg-right-arrow.component';
+import { PasswordEntropyService } from './services/password-entropy.service';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,7 @@ export class AppComponent {
 
   constructor(
     readonly config: PasswordConfigService,
+    readonly entropyService: PasswordEntropyService,
     private readonly _generator: PasswordGenerationService,
     private readonly _password: PasswordService,
   ) { }

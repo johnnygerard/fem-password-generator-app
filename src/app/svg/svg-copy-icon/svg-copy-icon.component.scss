@@ -9,18 +9,9 @@
     width: 17.5px;
     height: 20px;
   }
-
-  &.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
 }
 
 svg {
   transition: fill 0.2s ease;
-  fill: $color-neon-green;
-
-  :host:not(.disabled) &:hover {
-    fill: #fff;
-  }
+  fill: var(--copy-icon-fill);
 }

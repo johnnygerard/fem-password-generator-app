@@ -21,10 +21,6 @@ input[type="checkbox"] {
 // SVG styles **************************************************
 svg {
   cursor: pointer;
-
-  &:hover .unchecked-box {
-    stroke: $color-neon-green;
-  }
 }
 
 .checkmark {
@@ -37,5 +33,5 @@ svg {
 
 .unchecked-box {
   transition: stroke 0.2s ease;
-  stroke: $color-near-white;
+  stroke: var(--unchecked-box-border-color);
 }
