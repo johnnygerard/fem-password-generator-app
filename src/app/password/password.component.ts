@@ -56,10 +56,13 @@ export class PasswordComponent {
         this.isCopied = false;
       }, this.#TIMEOUT);
     } catch (error) {
-      if (error instanceof DOMException && error.name === 'NotAllowedError')
-        throw new Error('Clipboard write permission denied', { cause: error });
+      let message = 'Unexpected error';
 
-      throw new Error('Unexpected error', { cause: error });
+      if (error instanceof DOMException && error.name === 'NotAllowedError')
+        message = 'Clipboard write permission denied';
+
+      alert(message); // Notify user
+      throw new Error(message, { cause: error });
     }
   }
 }
