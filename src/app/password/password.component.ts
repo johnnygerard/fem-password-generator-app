@@ -16,45 +16,30 @@ import { NgIf } from '@angular/common';
 })
 export class PasswordComponent {
   readonly #PLACEHOLDER = 'P4$5W0rD!';
-  readonly #TIMEOUT = 2000;
   readonly isCopyDisabled = computed(() => this.isPlaceholder());
   readonly isPlaceholder = computed(() => this._password.value() === '');
   readonly password = computed(() => {
     const value = this._password.value();
     return value === '' ? this.#PLACEHOLDER : value;
   });
-  #isCopied = false;
-  timeoutId = 0;
+  isCopied = false;
 
   constructor(
     private readonly _password: PasswordService,
     private readonly _changeDetectorRef: ChangeDetectorRef,
   ) {
     effect(() => {
-      window.clearTimeout(this.timeoutId);
       this.password(); // Detect password changes
       this.isCopied = false;
+      this._changeDetectorRef.markForCheck();
     });
   }
 
-  get isCopied(): boolean {
-    return this.#isCopied;
-  }
-
-  set isCopied(value: boolean) {
-    this.#isCopied = value;
-    this._changeDetectorRef.markForCheck();
-  }
-
   async copyPassword(): Promise<void> {
-    window.clearTimeout(this.timeoutId);
-
     try {
       await window.navigator.clipboard.writeText(this.password());
       this.isCopied = true;
-      this.timeoutId = window.setTimeout(() => {
-        this.isCopied = false;
-      }, this.#TIMEOUT);
+      this._changeDetectorRef.markForCheck();
     } catch (error) {
       let message = 'Unexpected error';
 
