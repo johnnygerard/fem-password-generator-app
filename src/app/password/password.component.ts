@@ -22,24 +22,37 @@ export class PasswordComponent {
     const value = this._password.value();
     return value === '' ? this.#PLACEHOLDER : value;
   });
-  isCopied = false;
+  #isCopied = false;
+  timeoutId = 0;
 
   constructor(
     private readonly _password: PasswordService,
     private readonly _changeDetectorRef: ChangeDetectorRef,
   ) {
     effect(() => {
+      window.clearTimeout(this.timeoutId);
       this.password(); // Detect password changes
       this.isCopied = false;
-      this._changeDetectorRef.markForCheck();
     });
   }
 
-  writePasswordToClipboard(): void {
+  get isCopied(): boolean {
+    return this.#isCopied;
+  }
+
+  set isCopied(value: boolean) {
+    this.#isCopied = value;
+    this._changeDetectorRef.markForCheck();
+  }
+
+  copyPassword(): void {
+    window.clearTimeout(this.timeoutId);
     window.navigator.clipboard.writeText(this.password())
       .then(() => {
         this.isCopied = true;
-        this._changeDetectorRef.markForCheck();
+        this.timeoutId = window.setTimeout(() => {
+          this.isCopied = false;
+        }, 2000);
       });
   }
 }
