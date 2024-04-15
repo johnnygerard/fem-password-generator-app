@@ -52,3 +52,29 @@ input[type="range"] {
     );
   }
 }
+
+// Increase track hit area to the thumb size
+// Firefox does not support this rule because it does not allow ::before on input[type="range"]
+// This is a minor issue because Firefox already has a larger hit area than Chrome
+input[type="range"] {
+  position: relative;
+
+  &::before {
+    $extension-size: ($thumb-height - $track-height) / 2;
+
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -$extension-size;
+    bottom: -$extension-size;
+    left: -$extension-size;
+    right: -$extension-size;
+    background: transparent;
+  }
+
+  // Ensure thumb is always on top
+  &::-webkit-slider-thumb {
+    position: relative;
+    z-index: 2;
+  }
+}
