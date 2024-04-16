@@ -2,7 +2,7 @@
 
 This is my solution to the [Password generator app challenge](https://www.frontendmentor.io/challenges/password-generator-app-Mr8CLycqjh) from [Frontend Mentor](https://www.frontendmentor.io/).
 
-[![project status](https://img.shields.io/badge/status-work%20in%20progress-red?style=for-the-badge)](https://fem-password-generator-app-jgerard.vercel.app)
+[![project status](https://img.shields.io/badge/status-solution%20published-success?style=for-the-badge)](https://fem-password-generator-app-jgerard.vercel.app)
 
 ## Tech Stack
 
@@ -11,6 +11,10 @@ This is my solution to the [Password generator app challenge](https://www.fronte
 
 ## Main Features
 
+- Custom controls (slider and checkboxes)
+- Web Cryptography API
+- Clipboard API
+- Unit and integration testing with Jasmine
 - Standalone components
 - Bash automation (see [PR #1](../../pull/1))
 - [GitHub Actions](.github/workflows):
@@ -28,13 +32,11 @@ This is my solution to the [Password generator app challenge](https://www.fronte
 - [Website](https://fem-password-generator-app-jgerard.vercel.app) hosted with [Vercel](https://vercel.com/)
 <!-- - [Solution]() -->
 
-<!-- ## Screenshots
+## Screenshots
+
 ### Mobile
+
 ![mobile screenshot](screenshots/mobile.avif)
-### Tablet
-![tablet screenshot](screenshots/tablet.avif)
-### Desktop
-![desktop screenshot](screenshots/desktop.avif) -->
 
 ## About Frontend Mentor
 
