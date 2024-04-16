@@ -60,7 +60,7 @@ input[type="range"] {
   position: relative;
 
   &::before {
-    $extension-size: ($thumb-height - $track-height) / 2;
+    $extension-size: calc(($thumb-height - $track-height) / 2);
 
     content: "";
     position: absolute;
