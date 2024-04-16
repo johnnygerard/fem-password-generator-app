@@ -2,7 +2,7 @@
 
 This is my solution to the [Password generator app challenge](https://www.frontendmentor.io/challenges/password-generator-app-Mr8CLycqjh) from [Frontend Mentor](https://www.frontendmentor.io/).
 
-[![project status](https://img.shields.io/badge/status-solution%20published-success?style=for-the-badge)](https://fem-password-generator-app-jgerard.vercel.app)
+[![project status](https://img.shields.io/badge/status-solution%20published-success?style=for-the-badge)](https://www.frontendmentor.io/solutions/password-generator-app-eiK7vKKiCE)
 
 ## Tech Stack
 
@@ -30,7 +30,7 @@ This is my solution to the [Password generator app challenge](https://www.fronte
 ## Links
 
 - [Website](https://fem-password-generator-app-jgerard.vercel.app) hosted with [Vercel](https://vercel.com/)
-<!-- - [Solution]() -->
+- [Solution](https://www.frontendmentor.io/solutions/password-generator-app-eiK7vKKiCE)
 
 ## Screenshots
 
