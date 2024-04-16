@@ -16,7 +16,7 @@ This is my solution to the [Password generator app challenge](https://www.fronte
 - Clipboard API
 - Unit and integration testing with Jasmine
 - Standalone components
-- Bash automation (see [PR #1](../../pull/1))
+- Bash automation (see [PR #1](https://github.com/johnnygerard/fem-password-generator-app/pull/1))
 - [GitHub Actions](.github/workflows):
   - Vercel deployments
   - CodeQL analysis
