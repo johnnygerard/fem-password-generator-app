@@ -1,4 +1,4 @@
-import { Injectable, computed } from '@angular/core';
+import { Injectable, computed, inject } from '@angular/core';
 import { PasswordConfigService } from './password-config.service';
 import { CryptographyService } from './cryptography.service';
 
@@ -6,26 +6,23 @@ import { CryptographyService } from './cryptography.service';
   providedIn: 'root'
 })
 export class PasswordGenerationService {
+  readonly #crypto = inject(CryptographyService);
+  readonly #pwdConfig = inject(PasswordConfigService);
   readonly includedCharsets = computed(
-    () => this._pwdConfig.pwdCharsets
+    () => this.#pwdConfig.pwdCharsets
       .filter(charset => charset.isIncluded())
       .map(charset => charset.value)
   );
 
   readonly pwdCharset = computed(
-    () => this._pwdConfig.pwdCharsets.reduce(
+    () => this.#pwdConfig.pwdCharsets.reduce(
       (acc, charset) => charset.isIncluded() ? acc + charset.value : acc, ''
     )
   );
 
-  constructor(
-    private readonly _crypto: CryptographyService,
-    private readonly _pwdConfig: PasswordConfigService,
-  ) { }
-
   makePassword(): string {
     const pwdCharset = this.pwdCharset();
-    const pwdLength = this._pwdConfig.pwdLength();
+    const pwdLength = this.#pwdConfig.pwdLength();
     const includedCharsets = this.includedCharsets();
     const includedCharsetsCount = includedCharsets.length;
     let password = '';
@@ -47,7 +44,7 @@ export class PasswordGenerationService {
   }
 
   #getRandomChar(charset: string): string {
-    return charset[this._crypto.getRandomIndex(charset.length)];
+    return charset[this.#crypto.getRandomIndex(charset.length)];
   }
 
   #getRandomString(charset: string, length: number): string {
@@ -65,7 +62,7 @@ export class PasswordGenerationService {
     if (password.length === 0)
       return randomChar;
 
-    const randomPwdIndex = this._crypto.getRandomIndex(password.length + 1);
+    const randomPwdIndex = this.#crypto.getRandomIndex(password.length + 1);
 
     return password.slice(0, randomPwdIndex) + randomChar + password.slice(randomPwdIndex);
   }

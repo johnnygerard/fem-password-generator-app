@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { PasswordStrengthService } from '../services/password-strength.service';
 import { NgFor } from '@angular/common';
 
@@ -13,10 +13,11 @@ import { NgFor } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StrengthMeterComponent {
+  readonly #strengthService = inject(PasswordStrengthService);
   readonly ariaValueText = computed(
     () => this.passwordStrength() === 0 ? 'No password' : this.strengthMeterLabel()
   );
-  readonly passwordStrength = this._strengthService.passwordStrength;
+  readonly passwordStrength = this.#strengthService.passwordStrength;
   readonly strengthMeterLabel = computed(() => this.strengthMeterLabels[this.passwordStrength()]);
   readonly strengthMeterLabels = [
     '',
@@ -25,8 +26,4 @@ export class StrengthMeterComponent {
     'medium',
     'strong',
   ];
-
-  constructor(
-    private readonly _strengthService: PasswordStrengthService,
-  ) { }
 }
