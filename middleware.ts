@@ -1,11 +1,14 @@
 import { next } from '@vercel/edge';
 
+const MOVE_PERMANENTLY = 301;
+
 export default function middleware(request: Request): Response {
-  const urlPath = new URL(request.url).pathname;
-  const hasFileExtension = /\.\w+$/.test(urlPath);
+  const url = new URL(request.url);
+  const hasFileExtension = /\.\w+$/.test(url.pathname);
 
   if (hasFileExtension)
     return next(); // Do nothing
 
-  return Response.redirect('/');
+  url.pathname = '/';
+  return Response.redirect(url, MOVE_PERMANENTLY);
 }
