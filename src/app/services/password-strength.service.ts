@@ -1,4 +1,4 @@
-import { Injectable, computed } from '@angular/core';
+import { Injectable, computed, inject } from '@angular/core';
 import { PasswordStrength } from '../types/password-strength.enum';
 import { PasswordEntropyService } from './password-entropy.service';
 
@@ -6,12 +6,14 @@ import { PasswordEntropyService } from './password-entropy.service';
   providedIn: 'root'
 })
 export class PasswordStrengthService {
+  readonly #entropy = inject(PasswordEntropyService);
+
   /**
    * Compute password strength level from bits of entropy.
    * @link https://nordvpn.com/blog/what-is-password-entropy/
    */
   public passwordStrength = computed(() => {
-    const entropy = this._entropy.passwordEntropy();
+    const entropy = this.#entropy.passwordEntropy();
 
     if (entropy === 0) return PasswordStrength.LEVEL_0;
     if (entropy < 36) return PasswordStrength.LEVEL_1;
@@ -19,8 +21,4 @@ export class PasswordStrengthService {
     if (entropy < 90) return PasswordStrength.LEVEL_3;
     return PasswordStrength.LEVEL_4;
   });
-
-  constructor(
-    private readonly _entropy: PasswordEntropyService,
-  ) { }
 }

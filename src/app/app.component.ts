@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PasswordComponent } from './password/password.component';
 import { SliderComponent } from './slider/slider.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
@@ -28,16 +28,13 @@ import { PasswordEntropyService } from './services/password-entropy.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  readonly config = inject(PasswordConfigService);
+  readonly entropyService = inject(PasswordEntropyService);
+  readonly #generator = inject(PasswordGenerationService);
+  readonly #password = inject(PasswordService);
   readonly PASSWORD_LENGTH_INPUT = 'password-length-input';
 
-  constructor(
-    readonly config: PasswordConfigService,
-    readonly entropyService: PasswordEntropyService,
-    private readonly _generator: PasswordGenerationService,
-    private readonly _password: PasswordService,
-  ) { }
-
   generatePassword(): void {
-    this._password.value.set(this._generator.makePassword());
+    this.#password.value.set(this.#generator.makePassword());
   }
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, inject } from '@angular/core';
 import { PasswordService } from '../services/password.service';
 import { SvgCopyIconComponent } from '../svg/svg-copy-icon/svg-copy-icon.component';
 import { NgIf } from '@angular/common';
@@ -24,23 +24,22 @@ import { trigger, transition, style, animate } from '@angular/animations';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PasswordComponent {
+  readonly #password = inject(PasswordService);
+  readonly #changeDetectorRef = inject(ChangeDetectorRef);
   readonly #PLACEHOLDER = 'P4$5W0rD!';
   readonly isCopyDisabled = computed(() => this.isPlaceholder());
-  readonly isPlaceholder = computed(() => this._password.value() === '');
+  readonly isPlaceholder = computed(() => this.#password.value() === '');
   readonly password = computed(() => {
-    const value = this._password.value();
+    const value = this.#password.value();
     return value === '' ? this.#PLACEHOLDER : value;
   });
   isCopied = false;
 
-  constructor(
-    private readonly _password: PasswordService,
-    private readonly _changeDetectorRef: ChangeDetectorRef,
-  ) {
+  constructor() {
     effect(() => {
       this.password(); // Detect password changes
       this.isCopied = false;
-      this._changeDetectorRef.markForCheck();
+      this.#changeDetectorRef.markForCheck();
     });
   }
 
@@ -48,7 +47,7 @@ export class PasswordComponent {
     try {
       await window.navigator.clipboard.writeText(this.password());
       this.isCopied = true;
-      this._changeDetectorRef.markForCheck();
+      this.#changeDetectorRef.markForCheck();
     } catch (error) {
       let message = 'Unexpected error';
 
