@@ -6,7 +6,7 @@ export default function middleware(request: Request): Response {
   const url = new URL(request.url);
   const hasFileExtension = /\.\w+$/.test(url.pathname);
 
-  if (hasFileExtension)
+  if (hasFileExtension || url.pathname === '/')
     return next(); // Do nothing
 
   url.pathname = '/';
