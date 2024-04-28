@@ -11,10 +11,7 @@ describe('PasswordEntropyService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        PasswordConfigService,
-        PasswordEntropyService,
-      ],
+      providers: [PasswordConfigService, PasswordEntropyService],
     });
     config = TestBed.inject(PasswordConfigService);
     service = TestBed.inject(PasswordEntropyService);
@@ -51,15 +48,26 @@ describe('PasswordEntropyService', () => {
 
   it('should have a password entropy of 1671.4 (maximum entropy)', () => {
     config.pwdLength.set(255);
-    includeCharsets(config, Charset.UPPERCASE, Charset.LOWERCASE, Charset.DIGITS, Charset.SYMBOLS);
+    includeCharsets(
+      config,
+      Charset.UPPERCASE,
+      Charset.LOWERCASE,
+      Charset.DIGITS,
+      Charset.SYMBOLS,
+    );
 
     expect(service.passwordEntropy()).toBeCloseTo(1671.4, 1);
   });
 });
 
-function includeCharsets(config: PasswordConfigService, ...charsets: Charset[]) {
+function includeCharsets(
+  config: PasswordConfigService,
+  ...charsets: Charset[]
+) {
   for (const charset of charsets) {
-    const pwdCharset = config.pwdCharsets.find(pwdCharset => pwdCharset.value === charset);
+    const pwdCharset = config.pwdCharsets.find(
+      (pwdCharset) => pwdCharset.value === charset,
+    );
 
     if (pwdCharset === undefined) {
       throw new Error(`Charset ${charset} not found in config`);

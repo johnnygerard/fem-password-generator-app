@@ -1,8 +1,17 @@
 <span class="strength-label">Strength</span>
 <span class="strength-meter-label">{{ strengthMeterLabel() }}</span>
-<span class="strength-meter" role="meter" title="Password Strength" aria-valuemin="0"
-    aria-valuemax="4" [attr.aria-valuenow]="passwordStrength()"
-    [attr.aria-valuetext]="ariaValueText()">
-  <span class="bar" [class]="'level-' + (passwordStrength() < level ? 0 : passwordStrength())"
-      *ngFor="let level of [1,2,3,4]"></span>
+<span
+  class="strength-meter"
+  role="meter"
+  title="Password Strength"
+  aria-valuemin="0"
+  aria-valuemax="4"
+  [attr.aria-valuenow]="passwordStrength()"
+  [attr.aria-valuetext]="ariaValueText()"
+>
+  <span
+    class="bar"
+    [class]="'level-' + (passwordStrength() < level ? 0 : passwordStrength())"
+    *ngFor="let level of [1, 2, 3, 4]"
+  ></span>
 </span>

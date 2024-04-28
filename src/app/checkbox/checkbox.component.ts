@@ -1,14 +1,20 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  model,
+} from '@angular/core';
+import {
+  ControlValueAccessor,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-checkbox',
   standalone: true,
-  imports: [
-    NgTemplateOutlet,
-    FormsModule,
-  ],
+  imports: [NgTemplateOutlet, FormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -18,13 +24,13 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
   ],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent implements ControlValueAccessor {
   readonly labelId = input<string>();
   readonly value = model(false);
-  onChange = (_value: boolean) => { };
-  onTouched = () => { };
+  onChange = (_value: boolean) => {};
+  onTouched = () => {};
 
   onBlur(): void {
     this.onTouched();

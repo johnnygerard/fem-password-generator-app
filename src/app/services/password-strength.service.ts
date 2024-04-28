@@ -3,7 +3,7 @@ import { PasswordStrength } from '../types/password-strength.enum';
 import { PasswordEntropyService } from './password-entropy.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PasswordStrengthService {
   readonly #entropy = inject(PasswordEntropyService);

@@ -1,5 +1,5 @@
-import { model } from "@angular/core";
-import { Charset } from "./charset.enum";
+import { model } from '@angular/core';
+import { Charset } from './charset.enum';
 
 export class PasswordCharset {
   isIncluded = model(false);
@@ -8,5 +8,5 @@ export class PasswordCharset {
     public readonly name: string,
     public readonly value: Charset,
     public readonly label: string,
-  ) { }
+  ) {}
 }
