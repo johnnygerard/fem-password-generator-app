@@ -51,7 +51,7 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
             },
-            "styles": ["src/styles.scss", "src/reset.css"],
+            "styles": ["src/reset.css", "src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -112,7 +112,7 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
             },
-            "styles": ["src/styles.scss", "src/reset.css"],
+            "styles": ["src/reset.css", "src/styles.scss"],
             "scripts": []
           }
         },
