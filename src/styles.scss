@@ -14,6 +14,7 @@ body {
   display: flex;
   justify-content: center;
 
+  min-height: 100vh;
   min-width: min-content;
   background-image: linear-gradient(to bottom, #14131b, #08070b);
   padding: 132px 0 92px;
@@ -25,7 +26,9 @@ body {
   // Typography
   color: $color-near-white;
   font-family: "JetBrains Mono", monospace;
-  font-feature-settings: "clig" off, "liga" off;
+  font-feature-settings:
+    "clig" off,
+    "liga" off;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
