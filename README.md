@@ -9,7 +9,7 @@ This is my solution to the [Password generator app challenge](https://www.fronte
 - [Live website](https://fem-password-generator-app-jgerard.vercel.app/)
 - [Solution](https://www.frontendmentor.io/solutions/password-generator-app-eiK7vKKiCE)
 - [Challenge](https://www.frontendmentor.io/challenges/password-generator-app-Mr8CLycqjh)
-- [Lighthouse report](https://googlechrome.github.io/lighthouse/viewer/?gist=a0b8501d1c8524542e1a925f82563438)
+- [Lighthouse report](https://googlechrome.github.io/lighthouse/viewer/?gist=49d5189fa9195e7f4861b24d2078e4d9)
 
 ## Tech Stack
 
