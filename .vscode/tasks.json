@@ -44,7 +44,7 @@
       }
     },
     {
-      "label": "test (current spec)",
+      "label": "test current file",
       "type": "shell",
       "command": "ng test --include ${relativeFile}",
       "isBackground": true,

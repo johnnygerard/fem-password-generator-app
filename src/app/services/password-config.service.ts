@@ -3,7 +3,7 @@ import { Charset } from '../types/charset.enum';
 import { PasswordCharset } from '../types/password-charset.class';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PasswordConfigService {
   readonly PWD_MIN_LENGTH = 0;
@@ -11,8 +11,16 @@ export class PasswordConfigService {
   readonly pwdLength = model(0);
 
   readonly pwdCharsets = [
-    new PasswordCharset('uppercase', Charset.UPPERCASE, 'Include Uppercase Letters'),
-    new PasswordCharset('lowercase', Charset.LOWERCASE, 'Include Lowercase Letters'),
+    new PasswordCharset(
+      'uppercase',
+      Charset.UPPERCASE,
+      'Include Uppercase Letters',
+    ),
+    new PasswordCharset(
+      'lowercase',
+      Charset.LOWERCASE,
+      'Include Lowercase Letters',
+    ),
     new PasswordCharset('digits', Charset.DIGITS, 'Include Numbers'),
     new PasswordCharset('symbols', Charset.SYMBOLS, 'Include Symbols'),
   ] as const;
@@ -35,10 +43,7 @@ export class PasswordConfigService {
 
     effect(() => {
       // Serialize password length on change
-      storage.setItem(
-        PWD_LENGTH_KEY,
-        JSON.stringify(this.pwdLength())
-      );
+      storage.setItem(PWD_LENGTH_KEY, JSON.stringify(this.pwdLength()));
     });
 
     for (const charset of this.pwdCharsets) {
@@ -52,10 +57,7 @@ export class PasswordConfigService {
 
       effect(() => {
         // Serialize charset setting on change
-        storage.setItem(
-          charsetKey,
-          JSON.stringify(charset.isIncluded())
-        );
+        storage.setItem(charsetKey, JSON.stringify(charset.isIncluded()));
       });
     }
   }

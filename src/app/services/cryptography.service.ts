@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CryptographyService {
   readonly #MAX_BYTE = 255;
@@ -17,12 +17,10 @@ export class CryptographyService {
   }
 
   public getRandomIndex(length: number): number {
-    const isValidInput = length >= 1
-      && length <= this.#MAX_BYTE
-      && Number.isInteger(length);
+    const isValidInput =
+      length >= 1 && length <= this.#MAX_BYTE && Number.isInteger(length);
 
-    if (!isValidInput)
-      throw new Error(`${length} is not a valid length`);
+    if (!isValidInput) throw new Error(`${length} is not a valid length`);
 
     // Greatest byte value that is a multiple of the specified length
     const upperBound = this.#MAX_BYTE - (this.#MAX_BYTE % length);

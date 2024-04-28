@@ -13,10 +13,7 @@ describe('PasswordGenerationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        PasswordConfigService,
-        PasswordGenerationService,
-      ],
+      providers: [PasswordConfigService, PasswordGenerationService],
     });
     configService = TestBed.inject(PasswordConfigService);
     service = TestBed.inject(PasswordGenerationService);
@@ -51,7 +48,11 @@ describe('PasswordGenerationService', () => {
   it('should generate a password with the correct charset', () => {
     // Test all charset combinations for all valid lengths
     for (let flags = 1; flags < 16; flags++) {
-      for (let pwdLength = PWD_MIN_LENGTH; pwdLength < PWD_MAX_LENGTH; pwdLength++) {
+      for (
+        let pwdLength = PWD_MIN_LENGTH;
+        pwdLength < PWD_MAX_LENGTH;
+        pwdLength++
+      ) {
         configService.pwdLength.set(pwdLength);
         const config = configureCharsets(configService, flags);
         const { charset, charsets } = config;
@@ -65,7 +66,7 @@ describe('PasswordGenerationService', () => {
         // Check that the password contains at least one character from each charset
         if (pwdLength >= charsets.length) {
           for (const charset of charsets) {
-            expect(pwdChars.some(char => charset.includes(char))).toBeTrue();
+            expect(pwdChars.some((char) => charset.includes(char))).toBeTrue();
           }
         }
       }
@@ -77,20 +78,21 @@ function configureCharsets(
   service: PasswordConfigService,
   flags: number,
 ): {
-  charset: string,
-  charsets: Charset[],
+  charset: string;
+  charsets: Charset[];
 } {
   for (let i = 0; i < 4; i++) {
     const flag = flags & (1 << i);
     service.pwdCharsets[i].isIncluded.set(Boolean(flag));
   }
 
-  const includedCharsets = service.pwdCharsets
-    .filter(charset => charset.isIncluded());
+  const includedCharsets = service.pwdCharsets.filter((charset) =>
+    charset.isIncluded(),
+  );
 
   // Return the full charset and the component charsets
   return {
     charset: includedCharsets.reduce((acc, charset) => acc + charset.value, ''),
-    charsets: includedCharsets.map(charset => charset.value),
+    charsets: includedCharsets.map((charset) => charset.value),
   };
 }

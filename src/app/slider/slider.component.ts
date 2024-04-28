@@ -1,12 +1,21 @@
-import { ChangeDetectionStrategy, Component, HostBinding, input, model, numberAttribute } from '@angular/core';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  input,
+  model,
+  numberAttribute,
+} from '@angular/core';
+import {
+  ControlValueAccessor,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-slider',
   standalone: true,
-  imports: [
-    FormsModule,
-  ],
+  imports: [FormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -16,20 +25,20 @@ import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/f
   ],
   templateUrl: './slider.component.html',
   styleUrl: './slider.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SliderComponent implements ControlValueAccessor {
   labelId = input<string>();
   min = input.required({ transform: numberAttribute });
   max = input.required({ transform: numberAttribute });
   value = model<number | null>(null);
-  onChange = (_value: number) => { };
-  onTouched = () => { };
+  onChange = (_value: number) => {};
+  onTouched = () => {};
 
   @HostBinding('style.--progress-percentage.%')
   get progressPercentage(): number {
     const value = this.value();
-    return value === null ? 0 : value / this.max() * 100;
+    return value === null ? 0 : (value / this.max()) * 100;
   }
 
   onBlur(): void {

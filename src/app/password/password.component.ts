@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, computed, effect, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  computed,
+  effect,
+  inject,
+} from '@angular/core';
 import { PasswordService } from '../services/password.service';
 import { SvgCopyIconComponent } from '../svg/svg-copy-icon/svg-copy-icon.component';
 import { NgIf } from '@angular/common';
@@ -15,13 +22,10 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ],
   selector: 'app-password',
   standalone: true,
-  imports: [
-    NgIf,
-    SvgCopyIconComponent,
-  ],
+  imports: [NgIf, SvgCopyIconComponent],
   templateUrl: './password.component.html',
   styleUrl: './password.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PasswordComponent {
   readonly #password = inject(PasswordService);

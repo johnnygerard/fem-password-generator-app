@@ -41,7 +41,7 @@ describe('CryptographyService', () => {
     const lowerBound = expectedCount * (1 - TOLERANCE);
     const upperBound = expectedCount * (1 + TOLERANCE);
 
-    indexCounts.forEach(count => {
+    indexCounts.forEach((count) => {
       expect(count).toBeGreaterThan(lowerBound);
       expect(count).toBeLessThan(upperBound);
     });

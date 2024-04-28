@@ -4,35 +4,51 @@ This is my solution to the [Password generator app challenge](https://www.fronte
 
 [![project status](https://img.shields.io/badge/status-solution%20published-success?style=for-the-badge)](https://www.frontendmentor.io/solutions/password-generator-app-eiK7vKKiCE)
 
+## Links
+
+- [Live website](https://fem-password-generator-app-jgerard.vercel.app/)
+- [Solution](https://www.frontendmentor.io/solutions/password-generator-app-eiK7vKKiCE)
+- [Challenge](https://www.frontendmentor.io/challenges/password-generator-app-Mr8CLycqjh)
+- [Lighthouse report](https://googlechrome.github.io/lighthouse/viewer/?gist=a0b8501d1c8524542e1a925f82563438)
+
 ## Tech Stack
 
-- Angular 17
-- Sass
+### Frontend
 
-## Main Features
+- [Angular 17](https://blog.angular.io/introducing-angular-v17-4d7033312e4b)
+- [Sass](https://sass-lang.com/)
+
+### Backend
+
+- [Vercel](https://vercel.com/) (static hosting)
+
+## Key Features
 
 - Custom controls (slider and checkboxes)
 - Web Cryptography API
 - Clipboard API
 - Unit and integration testing with Jasmine
-- Standalone components
-- [Redirects](middleware.ts) using Vercel Edge Middleware API
-- Bash automation (see [PR #1](https://github.com/johnnygerard/fem-password-generator-app/pull/1))
-- [GitHub Actions](.github/workflows):
-  - Vercel deployments
-  - CodeQL analysis
 
-## Developer Tools
+## Automated Tasks
 
-- VS Code
-- Figma
-- GitHub Copilot
+- Project initialization with shell script (see [PR #1](https://github.com/johnnygerard/fem-password-generator-app/pull/1))
+- Vercel deployments:
+  - [Preview](.github/workflows/vercel-preview.yaml)
+  - [Production](.github/workflows/vercel-production.yaml)
+- [CodeQL analysis](https://codeql.github.com/) (see [workflow](.github/workflows/codeql.yaml))
 
-## Links
+## Environment & Tools
 
-- [Website](https://fem-password-generator-app-jgerard.vercel.app) hosted with [Vercel](https://vercel.com/)
-- [Solution](https://www.frontendmentor.io/solutions/password-generator-app-eiK7vKKiCE)
-- [Lighthouse report](https://googlechrome.github.io/lighthouse/viewer/?gist=a0b8501d1c8524542e1a925f82563438)
+- System: [Ubuntu](https://ubuntu.com/) (GNU/Linux)
+- IDE: [Visual Studio Code](https://code.visualstudio.com/)
+- Design: [Figma](https://www.figma.com/)
+
+## VS Code Extensions
+
+- [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=angular.ng-template)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=github.copilot) (active subscription required)
 
 ## Screenshots
 

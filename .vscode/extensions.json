@@ -1,7 +1,8 @@
 {
   "recommendations": [
     "angular.ng-template",
-    "editorconfig.editorconfig",
-    "dbaeumer.vscode-eslint"
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "github.copilot"
   ]
 }
